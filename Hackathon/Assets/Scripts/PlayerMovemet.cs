@@ -22,7 +22,7 @@ public class PlayerMovemet : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
-            rb.MovePosition(transform.position - new Vector3(0, movementSpeed * (1 - airResistant) * Time.deltaTime, 0));
+            rb.MovePosition(transform.position - new Vector3(0, movementSpeed * (1 - airResistant - movementSpeed) * Time.deltaTime, 0));
         }
     }
 }
