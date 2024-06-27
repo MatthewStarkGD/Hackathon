@@ -7,6 +7,7 @@ public class PlayerMovemet : MonoBehaviour
     [SerializeField] private float movementSpeed = 10.0f;
     [SerializeField] private float airResistant = 0.2f;
     private Rigidbody2D rb;
+    
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class PlayerMovemet : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
-            rb.MovePosition(transform.position - new Vector3(0, movementSpeed * (1 - airResistant) * Time.deltaTime, 0));
+            rb.MovePosition(transform.position - new Vector3(0, movementSpeed * (1 - airResistant + movementSpeed) * Time.deltaTime, 0));
         }
     }
 }
