@@ -14,7 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private Wave[] waves; 
     [SerializeField] private Transform spawnPoint; 
-    [SerializeField] private Transform firstTrackPoint; /
+    [SerializeField] private Transform firstTrackPoint; 
     [SerializeField] private float intervalBetweenWaves = 5f;
 
     private int currentWaveIndex = 0; 
