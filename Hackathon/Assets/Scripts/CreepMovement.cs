@@ -6,7 +6,7 @@ public class CreepMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float pathTreshold;
-    [SerializeField] private Transform nextPoint;
+    //[SerializeField] private Transform nextPoint;
 
     private Rigidbody2D rb;
     //private float path;
@@ -18,7 +18,7 @@ public class CreepMovement : MonoBehaviour
     }
     private void Start()
     {
-        rb.velocity = (nextPoint.position - transform.position).normalized * moveSpeed;
+        //rb.velocity = (nextPoint.position - transform.position).normalized * moveSpeed;
     }
 
     public void SetNewPoint(Transform newPoint)
