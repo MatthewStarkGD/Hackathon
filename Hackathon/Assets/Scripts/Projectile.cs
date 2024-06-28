@@ -27,7 +27,6 @@ public class Projectile : MonoBehaviour
     private void Move()
     { 
         Vector2 newVelocity = target.transform.position - transform.position;
-        Debug.Log(target.transform.position);
         rb.velocity = newVelocity.normalized * moveSpeed;
     }
 

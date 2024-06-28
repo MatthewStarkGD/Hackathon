@@ -8,34 +8,70 @@ public class AttackBlockBehavior : MonoBehaviour
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private float attackRange;
 
+    private float attackTimer = 0;
     private ContactFilter2D contactFilter;
+    private GameObject newTarget = null;
 
     private void FixedUpdate()
     {
-        AttackTartget();
+        attackTimer -= Time.fixedDeltaTime;
+        if (attackTimer < 0)
+        {
+            AttackTartget();
+            attackTimer = 1;
+        }
+
     }
 
     public void AttackTartget()
     {
-        GameObject newTarget = null;
         List<Collider2D> colliderList = new List<Collider2D>();
+        List<Collider2D> enemysList = new List<Collider2D>();
         Physics2D.OverlapCircle(transform.position, attackRange, contactFilter, colliderList);
 
-        foreach (Collider2D colliderTargets in colliderList)
-        { 
-            CreepMovement enemy = colliderTargets.gameObject.GetComponent<CreepMovement>();
-            if (enemy) 
+        if (!OldTargetInDistance())
+        {
+            newTarget = null;
+
+            foreach (Collider2D colliderTargets in colliderList)
             {
-                newTarget = colliderTargets.gameObject;
-                break;
+                CreepMovement enemy = colliderTargets.gameObject.GetComponent<CreepMovement>();
+                if (enemy)
+                {
+                    enemysList.Add(colliderTargets);
+                    //newTarget = colliderTargets.gameObject;
+                    //break;
+                }
             }
+
+            float distance = attackRange + 1;
+            foreach (Collider2D enemysCollider in enemysList)
+            {
+                float newDistance = Vector2.Distance(transform.position, enemysCollider.transform.position);
+                if (newDistance < distance)
+                {
+                    distance = newDistance;
+                    newTarget = enemysCollider.gameObject;
+                }
+            }            
         }
 
         if (newTarget)
-        { 
+        {
             Projectile newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
             newProjectile.SetTartget(newTarget);
         }
         //newProjectile.SetTartget();
     }
+
+    private bool OldTargetInDistance()
+    {
+        if (newTarget == null) 
+        {
+            return false; 
+        }
+
+        return Vector2.Distance(newTarget.transform.position, transform.position) < attackRange;        
+    }
 }
+
