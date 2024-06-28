@@ -30,7 +30,5 @@ public class EnemyHP : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject); 
-    }
-
-    
+    }    
 }

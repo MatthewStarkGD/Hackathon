@@ -35,6 +35,7 @@ public class Projectile : MonoBehaviour
         CreepMovement enemy = collision.GetComponent<CreepMovement>();
         if (enemy)
         {
+            enemy.GetComponent<EnemyHP>().TakeDamage(20); // magicNumber
             Destroy(gameObject);
         }
     }
