@@ -12,6 +12,13 @@ public class GameManager : MonoBehaviour
         playerCurrentHP = playerMaxHP;
     }
 
+    private void Awake()
+    {
+        Physics2D.IgnoreLayerCollision(6,6);
+        Physics2D.IgnoreLayerCollision(6,7);
+        Physics2D.IgnoreLayerCollision(7,7);
+    }
+
     public void PlayerTakeDamage(int damage)
     {
         playerCurrentHP -= damage;
