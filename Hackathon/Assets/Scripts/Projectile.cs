@@ -32,10 +32,10 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CreepMovement enemy = collision.GetComponent<CreepMovement>();
+        EnemyHP enemy = collision.GetComponent<EnemyHP>();
         if (enemy)
         {
-            enemy.GetComponent<EnemyHP>().TakeDamage(20); // magicNumber
+            enemy.TakeDamage(20); // magicNumber
             Destroy(gameObject);
         }
     }

@@ -12,6 +12,7 @@ public class PlayerMovemet : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        Physics2D.IgnoreLayerCollision(6, 6);
     }
 
     private void Update()
