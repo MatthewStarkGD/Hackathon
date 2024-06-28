@@ -14,17 +14,17 @@ public class CreepMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector3.up;
+        //rb.velocity = Vector3.up;
     }
     private void Start()
     {
-        //rb.velocity = nextPoint.position;
+        rb.velocity = (nextPoint.position - transform.position).normalized * moveSpeed;
     }
 
     public void SetNewPoint(Transform newPoint)
     {
         Vector2 newTarget = newPoint.position - transform.position;
-        rb.velocity = newTarget.normalized;
+        rb.velocity = newTarget.normalized * moveSpeed;
     }
 
     //private void Update()

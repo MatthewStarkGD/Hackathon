@@ -13,11 +13,11 @@ public class SetNextPoint : MonoBehaviour
 
         if (enemyMovement)
         {
-            Debug.Log("chut-chut");
-            if (Vector2.Distance(enemyMovement.transform.position, transform.position) <= 0.01) //((enemyMovement.transform.position.y >= transform.position.y) || (enemyMovement.transform.position.x >= transform.position.x))
+            if (Vector2.Distance(enemyMovement.transform.position, transform.position) <= 0.1) //((enemyMovement.transform.position.y >= transform.position.y) || (enemyMovement.transform.position.x >= transform.position.x))
             {
                 // Set Enemy next point
                 enemyMovement.SetNewPoint(nextPoint);
+                transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
             }
         }
     }
