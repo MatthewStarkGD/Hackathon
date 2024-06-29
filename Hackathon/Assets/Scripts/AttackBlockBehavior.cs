@@ -7,6 +7,7 @@ public class AttackBlockBehavior : MonoBehaviour
 
     [SerializeField] private Projectile projectilePrefab;
     [SerializeField] private float attackRange;
+    [SerializeField] private float projectileDamage;
 
     private float attackTimer = 0;
     private ContactFilter2D contactFilter;
@@ -59,7 +60,7 @@ public class AttackBlockBehavior : MonoBehaviour
         if (newTarget)
         {
             Projectile newProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-            newProjectile.SetTartget(newTarget);
+            newProjectile.SetTartgetAndDamage(newTarget, projectileDamage);
         }
         //newProjectile.SetTartget();
     }
@@ -72,6 +73,11 @@ public class AttackBlockBehavior : MonoBehaviour
         }
 
         return Vector2.Distance(newTarget.transform.position, transform.position) < attackRange;        
+    }
+
+    public void MultiplyProjectileDamage(float damageMultiply)
+    { 
+        projectileDamage *= damageMultiply;
     }
 }
 

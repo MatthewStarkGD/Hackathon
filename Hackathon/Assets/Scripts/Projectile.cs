@@ -5,9 +5,11 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
-
+    
+    private float projectileDamage;
     private GameObject target;
     private Rigidbody2D rb;
+    
 
     private void Awake()
     {
@@ -19,9 +21,10 @@ public class Projectile : MonoBehaviour
         Move();
     }
 
-    public void SetTartget(GameObject newTarget)
+    public void SetTartgetAndDamage(GameObject newTarget, float damage)
     {
         target = newTarget;
+        projectileDamage = damage;
     }
 
     private void Move()
@@ -42,7 +45,7 @@ public class Projectile : MonoBehaviour
         EnemyHP enemy = collision.GetComponent<EnemyHP>();
         if (enemy)
         {
-            enemy.TakeDamage(20); // magicNumber
+            enemy.TakeDamage(projectileDamage); // magicNumber
             Destroy(gameObject);
         }
     }

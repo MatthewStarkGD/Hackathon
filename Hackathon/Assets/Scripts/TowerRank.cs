@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TowerRank : MonoBehaviour
 {
+    [SerializeField] Sprite spriteRank1;
+    [SerializeField] Sprite spriteRank2;
+    [SerializeField] Sprite spriteRank3;
+
+    private SpriteRenderer spriteRenderer;
+
     private Rank towerRank = Rank.RANK1;
 
     public enum Rank
@@ -12,10 +18,19 @@ public class TowerRank : MonoBehaviour
         RANK2,
         RANK3,
     }
-        
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     public void RankUp()
     {
+        if ((int)towerRank >= 3) return;
+
         towerRank = (Rank)((int)towerRank + 1);
+        ChangeSprite();
+        gameObject.GetComponent<AttackBlockBehavior>().MultiplyProjectileDamage(1.5f);
         Debug.Log(towerRank);
         // Ограничить повышение 3 рангами, чтоыб не выходить за рендж
     }
@@ -23,5 +38,21 @@ public class TowerRank : MonoBehaviour
     public Rank GetRank()
     {
         return towerRank;
+    }
+
+    private void ChangeSprite()
+    { 
+        switch (towerRank) 
+        {
+            case Rank.RANK1:
+                spriteRenderer.sprite = spriteRank1;
+                break;
+            case Rank.RANK2: 
+                spriteRenderer.sprite = spriteRank2;
+                break;
+            case Rank.RANK3:
+                spriteRenderer.sprite = spriteRank3;
+                break;
+        }
     }
 }

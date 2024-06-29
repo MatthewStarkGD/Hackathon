@@ -23,6 +23,7 @@ public class CreepMovement : MonoBehaviour
 
     public void SetNewPoint(Transform newPoint)
     {
+        gameObject.GetComponent<LookAhead>().LookAt(newPoint.position);
         Vector2 newTarget = newPoint.position - transform.position;
         rb.velocity = newTarget.normalized * moveSpeed;
     }
