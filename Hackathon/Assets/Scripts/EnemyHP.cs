@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
-    public float maxHP = 100.0f; 
+    public float maxHP = 100.0f;
     private float currentHP;
+    public int goldReward = 10;
 
     void Start()
     {
@@ -29,6 +30,9 @@ public class EnemyHP : MonoBehaviour
 
     private void Die()
     {
+        GoldManager.instance.AddGold(goldReward);
         Destroy(gameObject); 
     }    
+
+
 }
