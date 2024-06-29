@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2997332578981537537}
   - component: {fileID: 4437879796575127302}
   - component: {fileID: 2128445077545957766}
+  - component: {fileID: 8874454564628863844}
   m_Layer: 7
   m_Name: FireBlockSpawn
   m_TagString: Untagged
@@ -134,3 +135,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &8874454564628863844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381444997703063177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28dd686a38561b64d83b42d7fd82354b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRank1: {fileID: 228486430, guid: e9d8900b202807043adc369a2e4039b5, type: 3}
+  spriteRank2: {fileID: 801326919, guid: e9d8900b202807043adc369a2e4039b5, type: 3}
+  spriteRank3: {fileID: -1881934642, guid: e9d8900b202807043adc369a2e4039b5, type: 3}

@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8733530573289367766, guid: a851c326992670f4d84444a321963ee6, type: 3}
   attackRange: 10
+  projectileDamage: 50
 --- !u!114 &-6875644998264498259
 MonoBehaviour:
   m_ObjectHideFlags: 0

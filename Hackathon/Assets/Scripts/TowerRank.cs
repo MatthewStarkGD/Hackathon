@@ -30,7 +30,7 @@ public class TowerRank : MonoBehaviour
 
         towerRank = (Rank)((int)towerRank + 1);
         ChangeSprite();
-        gameObject.GetComponent<AttackBlockBehavior>().MultiplyProjectileDamage(1.5f);
+        gameObject.GetComponent<AttackBlockBehavior>().MultiplyProjectileDamage(3f);
         Debug.Log(towerRank);
         // Ограничить повышение 3 рангами, чтоыб не выходить за рендж
     }
