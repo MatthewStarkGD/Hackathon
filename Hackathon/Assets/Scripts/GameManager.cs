@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class GameManager : MonoBehaviour
     public List<Image> hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    public GameObject gameOverPanel;
 
     void Start()
     {
         playerCurrentHP = playerMaxHP;
         UpdateHeartsUI();
+        gameOverPanel.SetActive(false);
     }
 
     private void Awake()
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
     void PlayerDie()
     {
         Debug.Log("Game Over");
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public int GetPlayerCurrentHP()
@@ -63,5 +68,11 @@ public class GameManager : MonoBehaviour
                 hearts[i].sprite = emptyHeart;
             }
         }
+    }
+
+    public void RestartLevel()
+    {
+        Time.timeScale = 1; // Восстановить время
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Перезапустить текущую сцену
     }
 }
