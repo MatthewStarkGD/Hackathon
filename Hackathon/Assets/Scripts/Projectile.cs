@@ -25,9 +25,16 @@ public class Projectile : MonoBehaviour
     }
 
     private void Move()
-    { 
-        Vector2 newVelocity = target.transform.position - transform.position;
-        rb.velocity = newVelocity.normalized * moveSpeed;
+    {
+        if (target)
+        {
+            Vector2 newVelocity = target.transform.position - transform.position;
+            rb.velocity = newVelocity.normalized * moveSpeed;
+        }
+        else 
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

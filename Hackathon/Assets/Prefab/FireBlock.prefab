@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2997332578981537537}
   - component: {fileID: 3659327565446664855}
   - component: {fileID: 836249011662636054}
+  - component: {fileID: -6875644998264498259}
+  - component: {fileID: 4389066128723170436}
   m_Layer: 7
   m_Name: FireBlock
   m_TagString: Untagged
@@ -163,3 +165,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8733530573289367766, guid: a851c326992670f4d84444a321963ee6, type: 3}
   attackRange: 10
+--- !u!114 &-6875644998264498259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381444997703063177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4df299d240eb8924e9c06565a9fa3dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4389066128723170436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381444997703063177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28dd686a38561b64d83b42d7fd82354b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

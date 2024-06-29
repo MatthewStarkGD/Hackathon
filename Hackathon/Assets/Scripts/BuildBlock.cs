@@ -5,7 +5,8 @@ using UnityEngine.EventSystems;
 
 public class BuildBlock : MonoBehaviour
 {
-    private bool isOccupated = false;
+    private bool isOccupied = false;
+    private GameObject towerBind;
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    BlockSpawmMouseFollow newBuildBlock = collision.GetComponent<BlockSpawmMouseFollow>();
@@ -42,15 +43,26 @@ public class BuildBlock : MonoBehaviour
 
     }
 
-    public void BuildNewBlock(float bindRadius)
+    public void BuildNewTower(float bindRadius)
     {
-        BlockSpawmMouseFollow newBuildBlock = Physics2D.OverlapCircle(transform.position, bindRadius).GetComponent<BlockSpawmMouseFollow>();
+        MergeTower newBuildBlock = Physics2D.OverlapCircle(transform.position, bindRadius).GetComponent<MergeTower>();
 
 
-        if (newBuildBlock && !isOccupated)
+        if (newBuildBlock && !isOccupied)
         {
-            isOccupated = true;
-            Instantiate(newBuildBlock.GetBlockType(), transform.position, Quaternion.identity);
+            isOccupied = true;
+            GameObject newTower = Instantiate(newBuildBlock.gameObject, transform.position, Quaternion.identity);
+            towerBind = newTower;
         }
+    }
+
+    public bool IsOccupiedTrue()
+    {
+        return isOccupied;
+    }
+
+    public GameObject GetTowerBind()
+    { 
+        return towerBind;
     }
 }

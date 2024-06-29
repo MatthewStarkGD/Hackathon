@@ -34,6 +34,7 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
             { 
                 newBlock = Instantiate(spriteBlcok, Vector2.zero, Quaternion.identity);
             }
+            newBlock.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
             canSpawn = false;
         }
 
@@ -51,7 +52,7 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
 
                 if (targetBlock) 
                 {
-                    targetBlock.BuildNewBlock(bindRadius);
+                    targetBlock.BuildNewTower(bindRadius);
                     break;
                 }
             }

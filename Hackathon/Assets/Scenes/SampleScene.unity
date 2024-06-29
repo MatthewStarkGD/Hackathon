@@ -961,6 +961,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 974907704}
     m_Modifications:
+    - target: {fileID: 666405833871099126, guid: 16f49afeb1f93d544ac76a5ce06da188, type: 3}
+      propertyPath: spriteBlcok
+      value: 
+      objectReference: {fileID: 4381444997703063177, guid: b3897cdad78476a4eb0f8d10fa9dc565, type: 3}
     - target: {fileID: 756727653070454153, guid: 16f49afeb1f93d544ac76a5ce06da188, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1263,6 +1267,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrackPoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5660877074892782827, guid: 3b3dd7273aa2cc34784f9b699cfee967, type: 3}
+      propertyPath: nextPoint
+      value: 
+      objectReference: {fileID: 643024096}
     - target: {fileID: 7856854818923475308, guid: 3b3dd7273aa2cc34784f9b699cfee967, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.4694614
