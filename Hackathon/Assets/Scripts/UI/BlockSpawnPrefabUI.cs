@@ -9,9 +9,9 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
     [SerializeField] private GameObject towerBlcokPrefab;
     
     private float bindRadius = 0.4f;
-    private GameObject newBlock;
+    private GameObject newTower;
     private bool isDown = false;
-    private bool isUp = true;
+    private bool isUp = false;
     private bool canSpawn = true;
 
     public void OnPointerDown(PointerEventData eventData)
@@ -28,49 +28,56 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     private void FixedUpdate()
     {
-        if (isDown)
+        if (isDown) 
         {
             if (canSpawn)
-            { 
-                newBlock = Instantiate(towerBlcokPrefab, Vector2.zero, Quaternion.identity);
+            {
+                newTower = Instantiate(towerBlcokPrefab, Vector2.zero, Quaternion.identity);
+                newTower.gameObject.GetComponent<Collider2D>().enabled = false;
+                canSpawn = false;
             }
-            newBlock.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            canSpawn = false;
+
+            newTower.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
 
-        if (isUp)
+        if (isUp) 
         {
-            if (!newBlock) return;
+            canSpawn = true;
+            RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.up, bindRadius);
 
-            BuildBlock targetBlock = null;
-            //Debug.Log(newBlock.transform.position);
-
-            Collider2D[] colliderArray = Physics2D.OverlapCircleAll(newBlock.transform.position, bindRadius);
-            foreach (Collider2D collider in colliderArray)
+            if (hitInfo)
             {
-                targetBlock = collider.GetComponent<BuildBlock>();
-
-                if (targetBlock) 
+                BuildBlock targetBlock = hitInfo.collider.GetComponent<BuildBlock>();
+                BuildInfo targetTower = hitInfo.collider.GetComponent<BuildInfo>();
+                if (targetBlock && !targetBlock.GetIsOccupied())
                 {
-                    targetBlock.BuildNewTower(bindRadius);
-                    targetBlock.SetIsOccupiedTrue(towerBlcokPrefab);
-                    break;
+                    // устанавливаем башню на пустой блок
+                    Debug.Log("tower on empty block");
+                    newTower.gameObject.GetComponent<Collider2D>().enabled = true;
+                    newTower.transform.position = targetBlock.transform.position;
+                    newTower.GetComponent<BuildInfo>().SetBuildBlock(targetBlock);
+                    targetBlock.SetIsOccupiedTrue();
+                }
+                else if (targetTower && targetTower.GetComponent<TowerRank>().GetRank() == newTower.GetComponent<TowerRank>().GetRank())
+                {
+                    // —ли€ние башен
+                    Debug.Log("Merge Tower");
+                    targetTower.GetComponent<TowerRank>().RankUp();
+                    Destroy(newTower);
+                }
+                else
+                {
+                    Debug.Log("return tower");
+                    Destroy(newTower);
                 }
             }
-                        
-            Destroy(newBlock);
-            canSpawn = true;
+            else
+            {
+                Debug.Log("return tower");
+                Destroy(newTower);            
+            }
+
+            isUp = false;
         }
     }
-
-    //private Button spawnButton;
-
-    //private void Awake()
-    //{
-    //    spawnButton = GetComponent<Button>();
-    //    spawnButton.onClick.AddListener(() =>
-    //    {
-    //        GameObject newBlock = Instantiate(spriteBlcok, Vector2.zero, Quaternion.identity);
-    //    });
-    //}
 }

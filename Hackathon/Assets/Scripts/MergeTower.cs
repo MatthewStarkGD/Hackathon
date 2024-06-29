@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -17,58 +18,53 @@ public class MergeTower : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);        
+        transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void OnMouseDown()
     {
-        Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, bindRadius);
-        foreach (Collider2D collider in colliderArray)
-        {
-            BuildBlock targetBlock = collider.GetComponent<BuildBlock>();
-            if (targetBlock)
-            {
-                targetBlock.SetIsOccupiedFalse();
-                startBlock = targetBlock;
-            }
-        }
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        gameObject.GetComponent<BuildInfo>().GetBuildBlock().GetComponent<BuildBlock>().SetIsOccupiedFalse();       
     }
 
     private void OnMouseUp()
     {
-        Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, bindRadius);
-        foreach (Collider2D collider in colliderArray)
-        {
-            BuildBlock targetBlock = collider.GetComponent<BuildBlock>();
+        RaycastHit2D hitInfo = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.up, bindRadius);
 
-            if (targetBlock)
+        if (hitInfo)
+        {
+            BuildBlock targetBlock = hitInfo.collider.GetComponent<BuildBlock>();
+            BuildInfo targetTower = hitInfo.collider.GetComponent<BuildInfo>();
+            if (targetBlock && !targetBlock.GetIsOccupied())
             {
-                if (targetBlock.GetIsOccupied())
-                {
-                    if (targetBlock.GetTowerBind().GetComponent<TowerRank>().GetRank() == transform.GetComponent<TowerRank>().GetRank())
-                    {
-                        targetBlock.GetTowerBind().GetComponent<TowerRank>().RankUp();
-                        Destroy(gameObject);
-                    }
-                    else 
-                    {
-                        break;
-                    }
-                }
-                else 
-                {
-                    Debug.Log("nmemerge");
-                    //targetBlock.BuildNewTower(bindRadius);
-                    transform.position = targetBlock.transform.position;
-                    targetBlock.SetIsOccupiedTrue(gameObject);
-                    //Destroy(gameObject);
-                    return;                
-                }
-                //break;
+                // Устанавливаем тавер на пустой блок
+                Debug.Log("tower on empty block");
+                transform.position = targetBlock.transform.position;
+                gameObject.GetComponent<BuildInfo>().SetBuildBlock(targetBlock);
+                gameObject.GetComponent<Collider2D>().enabled = true;
+                targetBlock.SetIsOccupiedTrue();
+            }
+            else if (targetTower && targetTower.GetComponent<TowerRank>().GetRank() == gameObject.GetComponent<TowerRank>().GetRank())
+            {
+                // Производим сливание таверов
+                Debug.Log("Merge tower");
+                targetTower.GetComponent<TowerRank>().RankUp();
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log("return tower1");
+                transform.position = gameObject.GetComponent<BuildInfo>().GetBuildBlock().transform.position;
+                gameObject.GetComponent<BuildInfo>().GetBuildBlock().GetComponent<BuildBlock>().SetIsOccupiedTrue();
+                gameObject.GetComponent<Collider2D>().enabled = true;
             }
         }
-
-        transform.position = startPos;
-        startBlock.SetIsOccupiedTrue(gameObject);
+        else
+        {
+            Debug.Log("return tower2");
+            transform.position = gameObject.GetComponent<BuildInfo>().GetBuildBlock().transform.position;
+            gameObject.GetComponent<BuildInfo>().GetBuildBlock().GetComponent<BuildBlock>().SetIsOccupiedTrue();
+            gameObject.GetComponent<Collider2D>().enabled = true;            
+        }
     }    
 }

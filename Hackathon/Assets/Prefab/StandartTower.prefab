@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4389066128723170436}
   - component: {fileID: 481383920097763766}
   - component: {fileID: 3726951705460563568}
+  - component: {fileID: -5396037482001209295}
   m_Layer: 7
   m_Name: StandartTower
   m_TagString: Untagged
@@ -222,5 +223,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4615f76cfcc4e774e960e31e7d5c4238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5396037482001209295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381444997703063177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3714a71a1434b4845bd9c0ae1febc670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
