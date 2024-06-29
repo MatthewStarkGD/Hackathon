@@ -28,20 +28,7 @@ public class BuildBlock : MonoBehaviour
     //        Instantiate(newBuildBlock.GetBlockType(), transform.position, Quaternion.identity);
     //    }
     //}
-
-    private void FixedUpdate()
-    {
-        //BlockSpawmMouseFollow newBuildBlock = Physics2D.OverlapCircle(transform.position, 1f).GetComponent<BlockSpawmMouseFollow>();
-
-
-        //if (newBuildBlock)
-        //{
-        //    Debug.Log("2");
-        //    Instantiate(newBuildBlock.GetBlockType(), transform.position, Quaternion.identity);  
-        //    Destroy(newBuildBlock.gameObject);
-        //}
-
-    }
+        
 
     public void BuildNewTower(float bindRadius)
     {
@@ -57,7 +44,6 @@ public class BuildBlock : MonoBehaviour
 
     public bool GetIsOccupied()
     {
-        Debug.Log(isOccupied);
         return isOccupied;
     }
 
@@ -65,12 +51,15 @@ public class BuildBlock : MonoBehaviour
     { 
         isOccupied = false;
         towerBind = null;
+        Debug.Log("Block set to not occupied");
     }
 
     public void SetIsOccupiedTrue(GameObject towerBuild)
     { 
         towerBind = towerBuild;
         isOccupied = true;
+        Debug.Log(isOccupied);
+        Debug.Log("Block set to occupied");
     }
 
     public GameObject GetTowerBind()

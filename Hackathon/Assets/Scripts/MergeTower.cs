@@ -7,6 +7,7 @@ public class MergeTower : MonoBehaviour
 {
     private float bindRadius = 0.4f;
 
+    private BuildBlock startBlock;
     private Vector2 startPos;
 
     private void Start()
@@ -16,8 +17,11 @@ public class MergeTower : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);        
+    }
 
+    private void OnMouseDown()
+    {
         Collider2D[] colliderArray = Physics2D.OverlapCircleAll(transform.position, bindRadius);
         foreach (Collider2D collider in colliderArray)
         {
@@ -25,6 +29,7 @@ public class MergeTower : MonoBehaviour
             if (targetBlock)
             {
                 targetBlock.SetIsOccupiedFalse();
+                startBlock = targetBlock;
             }
         }
     }
@@ -64,5 +69,6 @@ public class MergeTower : MonoBehaviour
         }
 
         transform.position = startPos;
+        startBlock.SetIsOccupiedTrue(gameObject);
     }    
 }
