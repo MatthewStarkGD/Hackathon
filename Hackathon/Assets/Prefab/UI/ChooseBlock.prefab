@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteBlcok: {fileID: 4381444997703063177, guid: 40a35a0fae889af4eaae9af3f5eb330f, type: 3}
+  bindRadius: 0.4
 --- !u!1 &2755742800675142836
 GameObject:
   m_ObjectHideFlags: 0

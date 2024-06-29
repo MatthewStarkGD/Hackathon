@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] GameObject spriteBlcok;
-
+    [SerializeField] private GameObject spriteBlcok;
+    
+    private float bindRadius = 0.4f;
     private GameObject newBlock;
     private bool isDown = false;
     private bool isUp = true;
@@ -43,15 +44,14 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
             BuildBlock targetBlock = null;
             //Debug.Log(newBlock.transform.position);
 
-            Collider2D[] colliderArray = Physics2D.OverlapCircleAll(newBlock.transform.position, 1f);
-            Debug.Log(colliderArray[1]);
+            Collider2D[] colliderArray = Physics2D.OverlapCircleAll(newBlock.transform.position, bindRadius);
             foreach (Collider2D collider in colliderArray)
             {
                 targetBlock = collider.GetComponent<BuildBlock>();
 
                 if (targetBlock) 
                 {
-                    targetBlock.BuildNewBlock();
+                    targetBlock.BuildNewBlock(bindRadius);
                     break;
                 }
             }

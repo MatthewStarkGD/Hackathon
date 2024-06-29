@@ -42,9 +42,9 @@ public class BuildBlock : MonoBehaviour
 
     }
 
-    public void BuildNewBlock()
+    public void BuildNewBlock(float bindRadius)
     {
-        BlockSpawmMouseFollow newBuildBlock = Physics2D.OverlapCircle(transform.position, 1f).GetComponent<BlockSpawmMouseFollow>();
+        BlockSpawmMouseFollow newBuildBlock = Physics2D.OverlapCircle(transform.position, bindRadius).GetComponent<BlockSpawmMouseFollow>();
 
 
         if (newBuildBlock && !isOccupated)
