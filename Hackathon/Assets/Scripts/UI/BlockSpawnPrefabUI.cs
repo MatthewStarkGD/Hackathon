@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private GameObject spriteBlcok;
+    [SerializeField] private GameObject towerBlcokPrefab;
     
     private float bindRadius = 0.4f;
     private GameObject newBlock;
@@ -32,7 +32,7 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
         {
             if (canSpawn)
             { 
-                newBlock = Instantiate(spriteBlcok, Vector2.zero, Quaternion.identity);
+                newBlock = Instantiate(towerBlcokPrefab, Vector2.zero, Quaternion.identity);
             }
             newBlock.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
             canSpawn = false;
@@ -53,6 +53,7 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
                 if (targetBlock) 
                 {
                     targetBlock.BuildNewTower(bindRadius);
+                    targetBlock.SetIsOccupiedTrue(towerBlcokPrefab);
                     break;
                 }
             }

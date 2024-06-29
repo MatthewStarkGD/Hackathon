@@ -50,15 +50,27 @@ public class BuildBlock : MonoBehaviour
 
         if (newBuildBlock && !isOccupied)
         {
-            isOccupied = true;
             GameObject newTower = Instantiate(newBuildBlock.gameObject, transform.position, Quaternion.identity);
-            towerBind = newTower;
+            SetIsOccupiedTrue(newTower);
         }
     }
 
-    public bool IsOccupiedTrue()
+    public bool GetIsOccupied()
     {
+        Debug.Log(isOccupied);
         return isOccupied;
+    }
+
+    public void SetIsOccupiedFalse()
+    { 
+        isOccupied = false;
+        towerBind = null;
+    }
+
+    public void SetIsOccupiedTrue(GameObject towerBuild)
+    { 
+        towerBind = towerBuild;
+        isOccupied = true;
     }
 
     public GameObject GetTowerBind()
