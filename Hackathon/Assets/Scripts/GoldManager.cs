@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GoldManager : MonoBehaviour
 {
     public static GoldManager instance;
-    public int currentGold = 0;
+    public int currentGold = 10;
     public Text goldText;
 
     private void Awake()
@@ -38,6 +38,12 @@ public class GoldManager : MonoBehaviour
         {
             goldText.text = "Gold: " + currentGold.ToString();
         }
+    }
+
+    public void SpendGold(int price)
+    { 
+        currentGold -= price;
+        UpdateGoldUI();
     }
 }
 
