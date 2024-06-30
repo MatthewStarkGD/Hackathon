@@ -4,15 +4,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class LoadingManager : MonoBehaviour
 {
     public Text loadingText; 
     public Slider loadingBar;
     public float fakeLoadingSpeed = 0.1f;
+    public Text tipText;
+    public string[] tips;
 
     void Start()
     {
-        
+        if (tips.Length > 0 && tipText != null)
+        {
+            tipText.text = tips[Random.Range(0, tips.Length)];
+        }
         StartCoroutine(LoadAsync("SampleScene")); 
     }
 

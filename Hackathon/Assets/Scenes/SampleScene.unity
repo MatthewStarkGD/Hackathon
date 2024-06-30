@@ -5120,6 +5120,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4381444997703063177, guid: b3897cdad78476a4eb0f8d10fa9dc565, type: 3}
     - target: {fileID: 666405833871099126, guid: 16f49afeb1f93d544ac76a5ce06da188, type: 3}
+      propertyPath: priceForTower
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 666405833871099126, guid: 16f49afeb1f93d544ac76a5ce06da188, type: 3}
       propertyPath: towerBlcokPrefab
       value: 
       objectReference: {fileID: 4381444997703063177, guid: b3897cdad78476a4eb0f8d10fa9dc565, type: 3}
@@ -5429,7 +5433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a59f5c505c57594fb8d042903fb1694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGold: 10
+  currentGold: 50
   goldText: {fileID: 1148979319}
 --- !u!1001 &1757405168
 PrefabInstance:
@@ -5644,7 +5648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8516701919468276515, guid: b0f313168f97b4c47aea11371e89080e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8516701919468276515, guid: b0f313168f97b4c47aea11371e89080e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -5680,11 +5684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8516701919468276515, guid: b0f313168f97b4c47aea11371e89080e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 430
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8516701919468276515, guid: b0f313168f97b4c47aea11371e89080e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 900
+      value: 1048
       objectReference: {fileID: 0}
     - target: {fileID: 8516701919468276515, guid: b0f313168f97b4c47aea11371e89080e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
