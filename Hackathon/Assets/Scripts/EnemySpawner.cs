@@ -17,11 +17,26 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Transform firstTrackPoint; 
     [SerializeField] private float intervalBetweenWaves = 5f;
 
-    private int currentWaveIndex = 0; 
+    private int currentWaveIndex = 0;
 
-    private void Start()
+
+    private void OnEnable()
     {
-        StartCoroutine(SpawnWaves());
+        EventBus.OnEndMergeTutuor += StartSpawn;
+    }
+
+    private void OnDisable()
+    {
+        EventBus.OnEndMergeTutuor -= StartSpawn;        
+    }
+    //private void Start()
+    //{
+    //    StartCoroutine(SpawnWaves());        
+    //}
+
+    private void StartSpawn()
+    { 
+        StartCoroutine(SpawnWaves());        
     }
 
     private IEnumerator SpawnWaves()

@@ -9,6 +9,7 @@ public class TowerRank : MonoBehaviour
     [SerializeField] Sprite spriteRank3;
 
     private SpriteRenderer spriteRenderer;
+    private bool isTutorTrigered = false;
 
     private Rank towerRank = Rank.RANK1;
 
@@ -32,6 +33,11 @@ public class TowerRank : MonoBehaviour
         ChangeSprite();
         gameObject.GetComponent<AttackBlockBehavior>().MultiplyProjectileDamage(3f);
         Debug.Log(towerRank);
+        if (!isTutorTrigered)
+        { 
+            EventBus.OnEndMergeTutuor?.Invoke();
+            isTutorTrigered = true;
+        }
         // Ограничить повышение 3 рангами, чтоыб не выходить за рендж
     }
 

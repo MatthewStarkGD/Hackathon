@@ -16,6 +16,8 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
     private bool canSpawn = true;
     private bool canBuy = false;
 
+    private int towerPlacedForTutor;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         if (GoldManager.instance.currentGold >= priceForTower)
@@ -74,6 +76,11 @@ public class BlockSpawnPrefabUI : MonoBehaviour, IPointerDownHandler, IPointerUp
                     newTower.gameObject.GetComponent<Collider2D>().enabled = true;
                     newTower.transform.position = targetBlock.transform.position;
                     newTower.GetComponent<BuildInfo>().SetBuildBlock(targetBlock);
+                    towerPlacedForTutor++;
+                    if (towerPlacedForTutor == 2)
+                    {
+                        EventBus.OnEndDragTutuor?.Invoke();
+                    }
                     targetBlock.SetIsOccupiedTrue();
                 }
                 else if (targetTower && targetTower.GetComponent<TowerRank>().GetRank() == newTower.GetComponent<TowerRank>().GetRank())
